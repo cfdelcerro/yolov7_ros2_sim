@@ -7,14 +7,7 @@ Permite procesar vídeo en tiempo real (webcam o simulación) y publicar detecci
 
 ## 📂 Estructura del repositorio
 
-windows/
-└── ros2_ws/
-└── src/mi_paquete/
-wsl/
-└── ros2_ws/
-└── src/mi_paquete/
-assets/
-└── demo.gif (opcional)
+!estructura.PNG
 
 ---
 
