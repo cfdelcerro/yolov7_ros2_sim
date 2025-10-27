@@ -16,13 +16,11 @@ Permite procesar vídeo en tiempo real (webcam o simulación) y publicar detecci
 ### Windows
 - ROS 2 Jazzy para Windows  
 - Python 3.12 (pixi env)
-- OpenCV + PyTorch + YOLOv7  
-- OpenSSL x64 en PATH (`C:\Program Files\OpenSSL-Win64\bin`)
 
 ### WSL 2 / Ubuntu
 - ROS 2 Jazzy (nativo en Ubuntu 24.04)
+- Python 3.12 (pixi env)
 - Gazebo Harmonic
-- Python + PyTorch + YOLOv7  
 
 ---
 
@@ -48,7 +46,6 @@ ros2 run mi_paquete yolo_v7 --ros-args
 
 ### 3️⃣ Detección especializada (ej. perros)
 ```bat
-Copiar código
 ros2 run mi_paquete yolo_v7 --ros-args 
   -p weights:=C:\ai\yolov7\yolov7_dog.pt 
   -p names_yaml:=C:\ai\yolov7\data\dog.yaml 
@@ -58,21 +55,18 @@ ros2 run mi_paquete yolo_v7 --ros-args
 
 ### 4️⃣ Visualizar detecciones
 ```bat
-Copiar código
 ros2 run mi_paquete image_viewer --ros-args -p image_topic:=/yolo/annotated
 👉 Muestra la imagen anotada con las cajas de detección.
 ```
 
 ### 5️⃣ Nodo de alerta
 ```bat
-Copiar código
 ros2 run mi_paquete alert_person_node
 👉 Publica una alerta cuando se detecta una persona.
 ```
 
 ### 6️⃣ Inspeccionar tópicos
 ```bat
-Copiar código
 ros2 topic echo yolo/detections
 ros2 topic echo yolo/target_point
 ros2 topic echo yolo/metrics
@@ -81,7 +75,6 @@ ros2 topic echo yolo/metrics
 
 ### 7️⃣ Deshabilitar detección (servicio)
 ```bat
-Copiar código
 ros2 service call /yolo/enable std_srvs/srv/SetBool "{data: false}"
 👉 Llama al servicio para pausar o reanudar la detección en el nodo YOLOv7.
 ```
