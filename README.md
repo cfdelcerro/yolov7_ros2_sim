@@ -35,7 +35,7 @@ Permite procesar vídeo en tiempo real (webcam o simulación) y publicar detecci
 ros2 run mi_paquete cam_pub
 👉 Publica los frames de la webcam en el tópico /camera/image_raw.
 
-### 2️⃣ Ejecutar detección YOLOv7 general (COCO)
+**### 2️⃣ Ejecutar detección YOLOv7 general (COCO)**
 bat
 Copiar código
 ros2 run mi_paquete yolo_v7 --ros-args ^
