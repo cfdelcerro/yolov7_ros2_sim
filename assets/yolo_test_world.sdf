@@ -1,0 +1,268 @@
+<?xml version="1.0" ?>
+<sdf version="1.9">
+  <world name="yolo_world">
+    
+    <physics name="1ms" type="ignored">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+    </physics>
+    
+    <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics"></plugin>
+    <plugin filename="gz-sim-user-commands-system" name="gz::sim::systems::UserCommands"></plugin>
+    <plugin filename="gz-sim-scene-broadcaster-system" name="gz::sim::systems::SceneBroadcaster"></plugin>
+    <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+    
+    <light type="directional" name="sun">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <direction>-0.5 0.1 -0.9</direction>
+    </light>
+    
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+            </plane>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    
+    <!-- Cámara -->
+    <model name="camera">
+      <pose>0 0 1.5 0 0.2 0</pose>
+      <static>true</static>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.1 0.1 0.1</size>
+            </box>
+          </geometry>
+        </visual>
+        <sensor name="camera" type="camera">
+          <camera>
+            <horizontal_fov>1.047</horizontal_fov>
+            <image>
+              <width>640</width>
+              <height>480</height>
+            </image>
+            <clip>
+              <near>0.1</near>
+              <far>100</far>
+            </clip>
+          </camera>
+          <always_on>1</always_on>
+          <update_rate>30</update_rate>
+          <visualize>true</visualize>
+          <topic>camera/image_raw</topic>
+        </sensor>
+      </link>
+    </model>
+    
+    <!-- Mesa (puede detectarse como dining table) -->
+    <model name="table">
+      <pose>3 0 0 0 0 0</pose>
+      <static>true</static>
+      <link name="link">
+        <!-- Superficie de la mesa -->
+        <visual name="top">
+          <pose>0 0 0.75 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>1.5 0.8 0.05</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.6 0.4 0.2 1</ambient>
+            <diffuse>0.6 0.4 0.2 1</diffuse>
+          </material>
+        </visual>
+        <!-- Patas -->
+        <visual name="leg1">
+          <pose>0.6 0.3 0.375 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.05 0.05 0.75</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.5 0.3 0.1 1</ambient>
+            <diffuse>0.5 0.3 0.1 1</diffuse>
+          </material>
+        </visual>
+        <visual name="leg2">
+          <pose>-0.6 0.3 0.375 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.05 0.05 0.75</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.5 0.3 0.1 1</ambient>
+            <diffuse>0.5 0.3 0.1 1</diffuse>
+          </material>
+        </visual>
+        <visual name="leg3">
+          <pose>0.6 -0.3 0.375 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.05 0.05 0.75</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.5 0.3 0.1 1</ambient>
+            <diffuse>0.5 0.3 0.1 1</diffuse>
+          </material>
+        </visual>
+        <visual name="leg4">
+          <pose>-0.6 -0.3 0.375 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.05 0.05 0.75</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.5 0.3 0.1 1</ambient>
+            <diffuse>0.5 0.3 0.1 1</diffuse>
+          </material>
+        </visual>
+        <collision name="collision">
+          <pose>0 0 0.375 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>1.5 0.8 0.75</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+    
+    <!-- Silla (puede detectarse como chair) -->
+    <model name="chair">
+      <pose>3 1.2 0 0 0 3.14</pose>
+      <static>true</static>
+      <link name="link">
+        <!-- Asiento -->
+        <visual name="seat">
+          <pose>0 0 0.5 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.5 0.5 0.05</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.3 0.3 0.8 1</ambient>
+            <diffuse>0.3 0.3 0.8 1</diffuse>
+          </material>
+        </visual>
+        <!-- Respaldo -->
+        <visual name="back">
+          <pose>-0.225 0 0.75 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.05 0.5 0.5</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.3 0.3 0.8 1</ambient>
+            <diffuse>0.3 0.3 0.8 1</diffuse>
+          </material>
+        </visual>
+        <!-- Patas -->
+        <visual name="leg1">
+          <pose>0.2 0.2 0.25 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.02</radius>
+              <length>0.5</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.2 0.2 0.6 1</ambient>
+            <diffuse>0.2 0.2 0.6 1</diffuse>
+          </material>
+        </visual>
+        <visual name="leg2">
+          <pose>-0.2 0.2 0.25 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.02</radius>
+              <length>0.5</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.2 0.2 0.6 1</ambient>
+            <diffuse>0.2 0.2 0.6 1</diffuse>
+          </material>
+        </visual>
+        <visual name="leg3">
+          <pose>0.2 -0.2 0.25 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.02</radius>
+              <length>0.5</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.2 0.2 0.6 1</ambient>
+            <diffuse>0.2 0.2 0.6 1</diffuse>
+          </material>
+        </visual>
+        <visual name="leg4">
+          <pose>-0.2 -0.2 0.25 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.02</radius>
+              <length>0.5</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.2 0.2 0.6 1</ambient>
+            <diffuse>0.2 0.2 0.6 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    
+    <!-- Botella (puede detectarse como bottle) -->
+    <model name="bottle">
+      <pose>3 -0.3 0.775 0 0 0</pose>
+      <static>true</static>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.05</radius>
+              <length>0.25</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0 0.8 0 1</ambient>
+            <diffuse>0 0.8 0 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    
+  </world>
+</sdf>
