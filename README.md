@@ -101,6 +101,8 @@ ros2 service call /yolo/enable std_srvs/srv/SetBool "{data: false}"
 gz sim ~/gazebo_worlds/yolo_test_world.sdf
 ```
 🌍 Inicia el entorno de simulación en Gazebo con una cámara RGB activa.
+Se ha creado un entorno de simulación en Gazebo (assets/yolo_test_world.sdf) que incluye una mesa, una silla y una cámara RGB fija.
+Este mundo sirve como escenario básico para probar la detección de objetos mediante YOLOv7 en un entorno controlado.
 
 ### 2️⃣ Crear el puente entre Gazebo y ROS 2
 ```bash
@@ -117,9 +119,10 @@ ros2 run mi_paquete yolo_v7 --ros-args \
 ```
 🤖 Lanza YOLOv7 procesando los frames del entorno simulado y publica las imágenes anotadas en /yolo/annotated.
 
-### 4️⃣ Visualizar las detecciones
+### 4️⃣ Visualizar la cámara gazebo y las detecciones
 ```bash
-source ~/init.sh && ros2 run mi_paquete image_viewer --ros-args -p image_topic:=/yolo/annotated
+ros2 run mi_paquete image_viewer --ros-args -p image_topic:=/camera/image_raw
+ros2 run mi_paquete image_viewer --ros-args -p image_topic:=/yolo/annotated
 ```
 🖼️ Muestra la salida de YOLOv7 con las detecciones superpuestas en tiempo real.
 
