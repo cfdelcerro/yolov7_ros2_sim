@@ -7,7 +7,7 @@ Permite procesar vídeo en tiempo real (webcam o simulación) y publicar detecci
 
 ## 📂 Estructura del repositorio
 
-!estructura.PNG
+![estructura de la carpeta]estructura.PNG
 
 ---
 
