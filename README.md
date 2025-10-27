@@ -15,12 +15,12 @@ Permite procesar vídeo en tiempo real (webcam o simulación) y publicar detecci
 
 ### Windows
 - ROS 2 Jazzy para Windows  
-- Python 3.12 (pixi env)
+- Python 3.12 (Numpy 1.26.4, Torch '2.5.1+cu121', Opencv '4.10.0')
 
 ### WSL 2 / Ubuntu
 - ROS 2 Jazzy (nativo en Ubuntu 24.04)
-- Python 3.12 (pixi env)
 - Gazebo Harmonic
+- Python 3.12  (Numpy 1.26.4, Torch '2.5.1+cu121', Opencv '4.10.0')
 
 ---
 
