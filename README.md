@@ -85,7 +85,46 @@ ros2 service call /yolo/enable std_srvs/srv/SetBool "{data: false}"
 
 | Funcionalidad | Enlace YouTube |
 |----------------|----------------|
-| 📸 cam_pub (Web local) | [Ver demo](https://youtu.be/6up0zICNwzI) |
+| 📸 cam_pub (Webcam local) | [Ver demo](https://youtu.be/6up0zICNwzI) |
 | 🎞️ video_pub (Detección general) | [Ver demo](https://youtu.be/CZsttRGi1jA) |
-| 🐶 video_pub (detección de perros) | [Ver demo](https://youtu.be/8AsDb_kmJzk) |
+| 🐶 video_pub (Detección de perros) | [Ver demo](https://youtu.be/8AsDb_kmJzk) |
 
+## 🐧 Ejecución en **WSL 2 + Gazebo**
+
+> Antes de ejecutar los comandos, asegúrate de haber configurado correctamente tu entorno ROS 2 en WSL.
+> Asegúrate de tener los pesos (`yolov7.pt`, `yolov7_dog.pt`) en `$HOME$\ai\yolov7\` y el entorno ROS 2 cargado.
+
+---
+
+### 1️⃣ Lanzar el mundo de prueba en Gazebo
+```bash
+gz sim ~/gazebo_worlds/yolo_test_world.sdf
+```
+🌍 Inicia el entorno de simulación en Gazebo con una cámara RGB activa.
+
+### 2️⃣ Crear el puente entre Gazebo y ROS 2
+```bash
+ros2 run ros_gz_bridge parameter_bridge /camera/image_raw@sensor_msgs/msg/Image@gz.msgs.Image
+```
+🔗 Establece la comunicación entre la cámara simulada de Gazebo y ROS 2, publicando las imágenes en /camera/image_raw.
+
+### 3️⃣ Ejecutar el nodo YOLOv7 sobre la simulación
+```bash
+ros2 run mi_paquete yolo_v7 --ros-args \
+  -p weights:=/home/usuario/ai/yolov7/yolov7.pt \
+  -p names_yaml:=/home/usuario/ai/yolov7/data/coco.yaml \
+  -p device:=cuda -p conf:=0.75 -p input_topic:=/camera/image_raw
+```
+🤖 Lanza YOLOv7 procesando los frames del entorno simulado y publica las imágenes anotadas en /yolo/annotated.
+
+### 4️⃣ Visualizar las detecciones
+```bash
+source ~/init.sh && ros2 run mi_paquete image_viewer --ros-args -p image_topic:=/yolo/annotated
+```
+🖼️ Muestra la salida de YOLOv7 con las detecciones superpuestas en tiempo real.
+
+## 🎬 Demo en video
+
+| Funcionalidad | Enlace YouTube |
+|----------------|----------------|
+| 📸 Cámara gazebo | [Ver demo](https://youtu.be/cXyTnm1nQeI) |
