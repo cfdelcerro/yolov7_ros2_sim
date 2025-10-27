@@ -80,3 +80,12 @@ ros2 topic echo yolo/metrics
 ros2 service call /yolo/enable std_srvs/srv/SetBool "{data: false}"
 ```
 👉 Llama al servicio para pausar o reanudar la detección en el nodo YOLOv7.
+
+## 🎬 Demos en video
+
+| Funcionalidad | Enlace YouTube |
+|----------------|----------------|
+| 📸 cam_pub (Cámara local) | [Ver demo](https://www.youtube.com/watch?v=abc123xyz) |
+| 🎞️ video_pub (Detección general) | [Ver demo](https://www.youtube.com/watch?v=def456uvw) |
+| 🐶 video_pub (detección de perros) | [Ver demo](https://www.youtube.com/watch?v=ghi789rst) |
+
