@@ -28,9 +28,9 @@ Permite procesar vídeo en tiempo real (webcam o simulación) y publicar detecci
 
 > Asegúrate de tener los pesos (`yolov7.pt`, `yolov7_dog.pt`) en `C:\ai\yolov7\` y el entorno ROS 2 cargado.
 
-### 1️⃣ Publicar la cámara local
+### 1️⃣ Publicar la cámara local / video 
 ```bat
-ros2 run mi_paquete cam_pub
+ros2 run mi_paquete cam_pub / vid_pub
 ```
 👉 Publica los frames de la webcam en el tópico /camera/image_raw.
 
@@ -85,7 +85,7 @@ ros2 service call /yolo/enable std_srvs/srv/SetBool "{data: false}"
 
 | Funcionalidad | Enlace YouTube |
 |----------------|----------------|
-| 📸 cam_pub (Cámara local) | [Ver demo](https://www.youtube.com/watch?v=abc123xyz) |
-| 🎞️ video_pub (Detección general) | [Ver demo](https://www.youtube.com/watch?v=def456uvw) |
-| 🐶 video_pub (detección de perros) | [Ver demo](https://www.youtube.com/watch?v=ghi789rst) |
+| 📸 cam_pub (Web local) | [Ver demo](https://youtu.be/6up0zICNwzI) |
+| 🎞️ video_pub (Detección general) | [Ver demo](https://youtu.be/CZsttRGi1jA) |
+| 🐶 video_pub (detección de perros) | [Ver demo](https://youtu.be/8AsDb_kmJzk) |
 
