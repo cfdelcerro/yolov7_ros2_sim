@@ -31,9 +31,9 @@ Permite procesar vídeo en tiempo real (webcam o simulación) y publicar detecci
 ### 1️⃣ Publicar la cámara local
 ```bat
 ros2 run mi_paquete cam_pub
-👉 Publica los frames de la webcam en el tópico /camera/image_raw.
-bat
 ```
+👉 Publica los frames de la webcam en el tópico /camera/image_raw.
+
 
 ### 2️⃣ Ejecutar detección YOLOv7 general (COCO)
 ```bat
@@ -41,8 +41,9 @@ ros2 run mi_paquete yolo_v7 --ros-args
   -p weights:=C:\ai\yolov7\yolov7.pt 
   -p names_yaml:=C:\ai\yolov7\data\coco.yaml 
   -p conf:=0.75 -p img_size:=640
-👉 Lanza YOLOv7 en tiempo real con las clases COCO.
 ```
+👉 Lanza YOLOv7 en tiempo real con las clases COCO.
+
 
 ### 3️⃣ Detección especializada (ej. perros)
 ```bat
@@ -50,31 +51,32 @@ ros2 run mi_paquete yolo_v7 --ros-args
   -p weights:=C:\ai\yolov7\yolov7_dog.pt 
   -p names_yaml:=C:\ai\yolov7\data\dog.yaml 
   -p conf:=0.75 -p img_size:=320
-👉 Modelo entrenado solo para la clase “perro”.
 ```
+👉 Modelo entrenado solo para la clase “perro”.
 
 ### 4️⃣ Visualizar detecciones
 ```bat
 ros2 run mi_paquete image_viewer --ros-args -p image_topic:=/yolo/annotated
-👉 Muestra la imagen anotada con las cajas de detección.
 ```
+👉 Muestra la imagen anotada con las cajas de detección.
 
 ### 5️⃣ Nodo de alerta
 ```bat
 ros2 run mi_paquete alert_person_node
-👉 Publica una alerta cuando se detecta una persona.
 ```
+👉 Publica una alerta cuando se detecta una persona.
+
 
 ### 6️⃣ Inspeccionar tópicos
 ```bat
 ros2 topic echo yolo/detections
 ros2 topic echo yolo/target_point
 ros2 topic echo yolo/metrics
-👉 Muestra las detecciones, coordenadas del objetivo y métricas (fps, confianza media, etc.).
 ```
+👉 Muestra las detecciones, coordenadas del objetivo y métricas (fps, confianza media, etc.).
 
 ### 7️⃣ Deshabilitar detección (servicio)
 ```bat
 ros2 service call /yolo/enable std_srvs/srv/SetBool "{data: false}"
-👉 Llama al servicio para pausar o reanudar la detección en el nodo YOLOv7.
 ```
+👉 Llama al servicio para pausar o reanudar la detección en el nodo YOLOv7.
