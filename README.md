@@ -128,7 +128,7 @@ ros2 run mi_paquete image_viewer --ros-args -p image_topic:=/yolo/annotated
 
 ## 🎬 Demo en video
 
-![estructura de la carpeta](yologazebojpg.jpb)
+![yolo detection in gazebo world](yolo_gazebojpg.jpg)
 
 | Funcionalidad | Enlace YouTube |
 |----------------|----------------|
