@@ -128,6 +128,8 @@ ros2 run mi_paquete image_viewer --ros-args -p image_topic:=/yolo/annotated
 
 ## 🎬 Demo en video
 
+![estructura de la carpeta](yologazebojpg.jpb)
+
 | Funcionalidad | Enlace YouTube |
 |----------------|----------------|
 | 📸 Cámara gazebo | [Ver demo](https://youtu.be/cXyTnm1nQeI) |
